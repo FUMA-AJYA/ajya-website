@@ -1,0 +1,1281 @@
+
+/* ==========================================
+   AJYA OFFICIAL WEBSITE
+   COMPLETE STYLESHEET
+   STEP 17
+========================================== */
+
+/* ==========================================
+   1. DESIGN VARIABLES
+========================================== */
+
+:root {
+  --navy: #101D35;
+  --navy-light: #1D3152;
+  --orange: #F28C28;
+  --orange-dark: #D97716;
+  --white: #FFFFFF;
+  --background: #F5F7FA;
+  --border: #E1E6ED;
+  --text: #101D35;
+  --muted: #5B6575;
+  --shadow: 0 10px 25px rgba(16, 29, 53, 0.08);
+}
+
+/* ==========================================
+   2. RESET & GLOBAL
+========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family:
+    Arial,
+    "Noto Sans JP",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+button,
+a,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 4px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.9;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ==========================================
+   3. HEADER - COMMON
+========================================== */
+
+.header,
+.header.ajya-header {
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 76px;
+  padding: 16px 5%;
+  background: var(--white);
+  color: var(--navy);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: inline-block;
+  flex-shrink: 0;
+  color: var(--navy);
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1;
+}
+
+.logo span {
+  color: var(--orange);
+}
+
+/* Desktop navigation */
+
+.ajya-desktop-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 1.7vw, 28px);
+  margin-left: auto;
+}
+
+.ajya-desktop-nav > a,
+.ajya-more > summary {
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.ajya-desktop-nav > a:hover,
+.ajya-more > summary:hover {
+  color: var(--orange-dark);
+}
+
+.ajya-desktop-nav > a[aria-current="page"] {
+  color: var(--orange-dark);
+  border-bottom: 2px solid var(--orange);
+  padding-bottom: 5px;
+}
+
+/* Header controls */
+
+.ajya-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.ajya-header .ajya-language-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 45px;
+  min-height: 38px;
+  padding: 6px 10px;
+  border: 1px solid #D8DEE7;
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ajya-language-btn:hover {
+  border-color: var(--orange);
+}
+
+/* ==========================================
+   4. MORE DROPDOWN
+========================================== */
+
+.ajya-more {
+  position: relative;
+}
+
+.ajya-more > summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  list-style: none;
+}
+
+.ajya-more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ajya-more > summary::after {
+  content: "⌄";
+  font-size: 15px;
+  line-height: 1;
+}
+
+.ajya-more[open] > summary,
+.ajya-more-active > summary {
+  color: var(--orange-dark);
+}
+
+.ajya-more-links {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  width: 190px;
+  padding: 8px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 28px rgba(16, 29, 53, 0.12);
+  z-index: 1100;
+}
+
+.ajya-more-links a {
+  display: block;
+  padding: 12px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ajya-more-links a:hover,
+.ajya-more-links a[aria-current="page"] {
+  background: #FFF1E3;
+  color: #B85F0B;
+}
+
+/* ==========================================
+   5. MOBILE NAVIGATION
+========================================== */
+
+.ajya-header .ajya-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid #D8DEE7;
+  border-radius: 4px;
+  color: var(--navy);
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.ajya-mobile-nav {
+  display: none;
+}
+
+.ajya-mobile-nav[hidden] {
+  display: none !important;
+}
+
+/* ==========================================
+   6. HOME HERO
+========================================== */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 620px;
+  padding: 110px 8%;
+  color: var(--white);
+  text-align: center;
+  background:
+    linear-gradient(
+      rgba(16, 29, 53, 0.62),
+      rgba(16, 29, 53, 0.72)
+    ),
+    url("hero.jpg") center / cover no-repeat;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1,
+.hero-title {
+  color: var(--white);
+  font-size: clamp(38px, 5.5vw, 72px);
+  line-height: 1.2;
+  letter-spacing: -1px;
+  margin-bottom: 25px;
+}
+
+.hero p {
+  max-width: 720px;
+  margin: 0 auto 32px;
+  color: #E8EDF5;
+  font-size: clamp(15px, 1.7vw, 19px);
+}
+
+/* ==========================================
+   7. BUTTONS & LINKS
+========================================== */
+
+.btn {
+  display: inline-block;
+  padding: 14px 30px;
+  background: var(--orange);
+  color: var(--navy);
+  border: 1px solid var(--orange);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-align: center;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn:hover {
+  background: #FFA94D;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.btn-outline:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.agenda-link,
+.news-readmore {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 15px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid var(--orange);
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.agenda-link:hover,
+.news-readmore:hover {
+  color: var(--orange-dark);
+}
+
+/* ==========================================
+   8. COMMON SECTIONS
+========================================== */
+
+.section {
+  padding: 90px 8%;
+}
+
+.section:nth-of-type(even) {
+  /* Section backgrounds are controlled
+     individually by page classes. */
+}
+
+.section-heading {
+  max-width: 850px;
+  margin-bottom: 35px;
+}
+
+.section-label {
+  margin-bottom: 15px;
+  color: var(--orange-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.section h2 {
+  margin-bottom: 24px;
+  color: var(--navy);
+  font-size: clamp(28px, 3.5vw, 42px);
+  line-height: 1.25;
+}
+
+.section > p:not(.section-label),
+.section-heading > p:not(.section-label) {
+  max-width: 900px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.95;
+}
+
+.section h3 {
+  color: var(--navy);
+}
+
+.agenda-number {
+  display: inline-block;
+  color: var(--orange-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ==========================================
+   9. YOUTH AGENDA 2055
+========================================== */
+
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.agenda-card {
+  min-width: 0;
+  padding: 30px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  transition: transform 0.25s ease;
+}
+
+.agenda-card:hover {
+  transform: translateY(-4px);
+}
+
+.agenda-card h3 {
+  margin: 16px 0;
+  font-size: 22px;
+}
+
+.agenda-card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.agenda-card.enabler {
+  border-top: 3px solid var(--orange);
+}
+
+.agenda-enablers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.agenda-enablers .agenda-card {
+  background: #FFF9F2;
+}
+
+/* Legacy pillar styles */
+
+.pillar-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.pillar {
+  padding: 30px;
+  background: var(--background);
+  border-top: 3px solid var(--orange);
+}
+
+/* ==========================================
+   10. FEATURED PROJECT - HOME
+========================================== */
+
+.featured-project {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 45px;
+  margin-top: 35px;
+}
+
+.featured-project-image {
+  width: 100%;
+  min-height: 340px;
+  background:
+    url("youth-drive.jpg") center / cover no-repeat;
+}
+
+.featured-project img,
+.project-image {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+}
+
+.featured-project-content h3 {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.featured-project-content p {
+  margin-bottom: 22px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.project-button {
+  display: inline-block;
+  padding: 13px 25px;
+  background: var(--orange);
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.project-button:hover {
+  background: #FFA94D;
+}
+
+/* ==========================================
+   11. HOME EVENT CARDS
+========================================== */
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+  margin-top: 35px;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 30px;
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.event-card h3 {
+  margin: 12px 0 18px;
+  font-size: 23px;
+}
+
+.event-card p {
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.report-button {
+  display: inline-block;
+  padding: 11px 20px;
+  margin: 6px 8px 6px 0;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+
+.report-button:hover {
+  background: var(--navy-light);
+}
+
+/* ==========================================
+   12. ABOUT PAGE
+========================================== */
+
+.about-page-hero {
+  padding: 95px 8%;
+  background: var(--navy);
+  color: var(--white);
+  text-align: center;
+}
+
+.about-page-hero .subtitle {
+  margin-bottom: 18px;
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.about-page-hero h1 {
+  margin-bottom: 20px;
+  color: var(--white);
+  font-size: clamp(34px, 5vw, 58px);
+  letter-spacing: -0.5px;
+}
+
+.about-page-hero > p:not(.subtitle) {
+  max-width: 780px;
+  margin: 0 auto;
+  color: #DDE5F0;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.about-values {
+  background: var(--background);
+}
+
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+  margin-top: 35px;
+}
+
+.about-value-card {
+  padding: 35px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--orange);
+}
+
+.about-value-card h3 {
+  margin-bottom: 18px;
+  font-size: 25px;
+}
+
+.about-value-card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* ==========================================
+   13. ACTIVITIES PAGE
+========================================== */
+
+.activities-section {
+  background: var(--background);
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.activity-card {
+  min-width: 0;
+  padding: 30px;
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.activity-card h3 {
+  margin: 18px 0;
+  font-size: 23px;
+}
+
+.activity-card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* ==========================================
+   14. PROJECTS PAGE
+========================================== */
+
+.projects-process-section {
+  background: var(--background);
+}
+
+.project-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.project-step {
+  min-width: 0;
+  padding: 32px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  transition: transform 0.25s ease;
+}
+
+.project-step:hover {
+  transform: translateY(-4px);
+}
+
+.project-step h3 {
+  margin: 20px 0;
+  font-size: 23px;
+}
+
+.project-step p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.project-placeholder {
+  margin-top: 35px;
+  padding: 65px 30px;
+  background: var(--background);
+  border: 1px dashed #BAC5D2;
+  text-align: center;
+}
+
+.project-placeholder-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 25px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--orange);
+  font-size: 36px;
+}
+
+.project-placeholder h3 {
+  margin-bottom: 15px;
+  font-size: 26px;
+}
+
+.project-placeholder p {
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* ==========================================
+   15. EVENTS PAGE
+========================================== */
+
+.events-page-section {
+  background: var(--background);
+}
+
+.events-page-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+  margin-top: 35px;
+}
+
+.events-page-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 35px;
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.events-page-card h3 {
+  margin: 15px 0;
+  font-size: 26px;
+  line-height: 1.4;
+}
+
+.events-page-card > p {
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.event-highlights {
+  width: 100%;
+  padding: 22px;
+  margin: 12px 0 28px;
+  background: var(--background);
+  border-left: 3px solid var(--orange);
+}
+
+.event-highlights h4 {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.event-highlights p {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+}
+
+/* ==========================================
+   16. NEWS PAGE
+========================================== */
+
+.news-section {
+  background: var(--background);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 35px;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 35px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.news-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.news-date {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.news-category {
+  padding: 5px 10px;
+  background: #FFF1E3;
+  color: #B85F0B;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.news-card h3 {
+  margin-bottom: 18px;
+  font-size: 23px;
+  line-height: 1.45;
+}
+
+.news-card p {
+  margin-bottom: 25px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.news-card .news-readmore {
+  margin-top: auto;
+}
+
+/* ==========================================
+   17. PARTNERS PAGE
+========================================== */
+
+.partners-directory,
+.partners-contact-section {
+  background: var(--background);
+}
+
+.partners-placeholder {
+  margin-top: 35px;
+  padding: 60px 30px;
+  background: var(--white);
+  border: 1px dashed #BAC5D2;
+  text-align: center;
+}
+
+.partners-placeholder-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--orange);
+  font-size: 36px;
+}
+
+.partners-placeholder h3 {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.partners-placeholder p {
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.partner-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.partner-type-card {
+  min-width: 0;
+  padding: 30px;
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.partner-type-card h3 {
+  margin: 18px 0;
+  font-size: 21px;
+  line-height: 1.4;
+}
+
+.partner-type-card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* ==========================================
+   18. CONTACT PAGE
+========================================== */
+
+.contact-categories-section {
+  background: var(--background);
+}
+
+.contact-category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.contact-category-card {
+  min-width: 0;
+  padding: 30px;
+  background: var(--white);
+  border: 1px solid var(--border);
+}
+
+.contact-category-card h3 {
+  margin: 18px 0;
+  font-size: 21px;
+  line-height: 1.4;
+}
+
+.contact-category-card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.contact-information-box {
+  margin-top: 30px;
+  padding: 40px;
+  background: var(--background);
+  border-left: 4px solid var(--orange);
+}
+
+.contact-information-box h3 {
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.contact-information-box p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.contact-related-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+/* ==========================================
+   19. FOOTER
+========================================== */
+
+footer,
+.footer {
+  padding: 35px 8%;
+  background: var(--navy);
+  color: #DDE5F0;
+  text-align: center;
+}
+
+footer p,
+.footer p {
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   20. TABLET
+========================================== */
+
+@media (max-width: 1100px) {
+
+  .ajya-desktop-nav {
+    display: none;
+  }
+
+  .ajya-header .ajya-menu-btn {
+    display: inline-flex;
+  }
+
+  .ajya-mobile-nav:not([hidden]) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1200;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 75px);
+    overflow-y: auto;
+    padding: 15px 5% 25px;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    box-shadow: 0 12px 24px rgba(16, 29, 53, 0.1);
+  }
+
+  .ajya-mobile-nav a {
+    display: block;
+    padding: 14px 5px;
+    color: var(--navy);
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .ajya-mobile-nav a:hover,
+  .ajya-mobile-nav a[aria-current="page"] {
+    color: var(--orange-dark);
+  }
+
+  .agenda-grid,
+  .activity-grid,
+  .project-steps,
+  .partner-types-grid,
+  .contact-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .featured-project {
+    gap: 30px;
+  }
+
+}
+
+/* ==========================================
+   21. MOBILE
+========================================== */
+
+@media (max-width: 768px) {
+
+  html {
+    scroll-padding-top: 75px;
+  }
+
+  .header,
+  .header.ajya-header {
+    min-height: 70px;
+    padding: 14px 5%;
+  }
+
+  .logo {
+    font-size: 27px;
+  }
+
+  .hero {
+    min-height: 500px;
+    padding: 85px 6%;
+  }
+
+  .hero h1,
+  .hero-title {
+    font-size: clamp(34px, 8vw, 48px);
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .section {
+    padding: 65px 6%;
+  }
+
+  .section h2 {
+    font-size: 30px;
+  }
+
+  .about-page-hero {
+    padding: 75px 6%;
+  }
+
+  .about-page-hero h1 {
+    font-size: 36px;
+  }
+
+  .about-page-hero > p:not(.subtitle) {
+    font-size: 15px;
+  }
+
+  .agenda-grid,
+  .agenda-enablers,
+  .pillar-container,
+  .featured-project,
+  .events-grid,
+  .about-values-grid,
+  .activity-grid,
+  .project-steps,
+  .events-page-grid,
+  .news-grid,
+  .partner-types-grid,
+  .contact-category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .agenda-card,
+  .event-card,
+  .about-value-card,
+  .activity-card,
+  .project-step,
+  .events-page-card,
+  .news-card,
+  .partner-type-card,
+  .contact-category-card {
+    padding: 25px;
+  }
+
+  .featured-project-image {
+    min-height: 260px;
+  }
+
+  .featured-project img,
+  .project-image {
+    height: 260px;
+  }
+
+  .featured-project-content h3 {
+    font-size: 25px;
+  }
+
+  .events-page-card h3 {
+    font-size: 23px;
+  }
+
+  .event-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-placeholder,
+  .partners-placeholder {
+    padding: 45px 20px;
+  }
+
+  .project-placeholder h3,
+  .partners-placeholder h3 {
+    font-size: 22px;
+  }
+
+  .contact-information-box {
+    padding: 28px 22px;
+  }
+
+  .contact-related-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  footer,
+  .footer {
+    padding: 30px 6%;
+  }
+
+}
+
+/* ==========================================
+   22. SMALL MOBILE
+========================================== */
+
+@media (max-width: 400px) {
+
+  .hero h1,
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .section h2 {
+    font-size: 27px;
+  }
+
+  .about-page-hero h1 {
+    font-size: 32px;
+  }
+
+  .ajya-header-controls {
+    gap: 8px;
+  }
+
+  .ajya-header .ajya-language-btn {
+    min-width: 40px;
+  }
+
+}
+
+/* ==========================================
+   23. REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+}
+
+/* ==========================================
+   END OF STYLESHEET
+========================================== */
