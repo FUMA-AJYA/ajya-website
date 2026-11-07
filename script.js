@@ -323,8 +323,9 @@ function updateLanguage() {
   if (heroTitle) heroTitle.innerHTML = t.heroTitle;
 
   setText("heroDescription", t.heroDescription);
-  setSelectorText(".hero .btn", t.discoverButton);
+  if (!document.body.classList.contains("home-renewal")) setSelectorText(".hero .btn", t.discoverButton);
 
+  if (!document.body.classList.contains("home-renewal")) {
   // Home about section
   setSelectorText("#about h2", t.aboutTitle);
   setSelectorText(
@@ -345,6 +346,8 @@ function updateLanguage() {
     "#contact .section-heading > p:not(.section-label)",
     t.contactDescription
   );
+
+  }
 
   // All other translated text
   document.querySelectorAll("[data-en][data-ja]")
@@ -404,3 +407,19 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ==========================================
    END
 ========================================== */
+
+// Graceful fallback for photo slots without uploaded images.
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('img[data-photo-fallback]').forEach(img => {
+    const fallback = () => img.closest('.aj-photo')?.classList.add('aj-missing');
+    img.addEventListener('error', fallback, {once:true});
+    if (img.complete && img.naturalWidth === 0) fallback();
+  });
+});
+
+// Logo files can be added later without changing HTML. Text remains until image loads.
+document.querySelectorAll('img[data-logo]').forEach(img => {
+  const show = () => img.closest('.aj-logo-tile')?.classList.add('logo-loaded');
+  if (img.complete && img.naturalWidth > 0) show();
+  else img.addEventListener('load', show, {once:true});
+});
